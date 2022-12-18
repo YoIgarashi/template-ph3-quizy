@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::get('/quiz/{id?}','App\Http\Controllers\QuizController@quiz');
+
+
+
+
+// Route::get('', 'コントローラー名@アクション名');
+
+// Route::get('/user', 'UserController@index');
