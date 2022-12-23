@@ -15,10 +15,18 @@ class ChoicesTableSeeder extends Seeder
     public function run()
     {
         $choice = [
-            'name' => 'たかなわ',
+            'name' => 'たかなわ'
             'valid' => '1'
         ];
-        
+        $choice = [
+            'name' => 'たかわ'
+            'valid' => '2'
+        ];
+        $choice = [
+            'name' => 'こうわ'
+            'valid' => '2'
+        ];
+
 
         DB::table('choices')->insert($choice);
     }
