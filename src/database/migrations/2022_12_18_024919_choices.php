@@ -14,9 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('choices', function(Blueprint $table){
-            $table->increments('id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('question_id');
+            $table->foreign('question_id')->references('id')->on('questions'); 
             $table->string('name');
             $table->integer('valid');
+            $table->timestamps();
         });
     }
 

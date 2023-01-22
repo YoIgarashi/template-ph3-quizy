@@ -14,8 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('questions', function(Blueprint $table){
-            $table->increments('big_questions_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('big_question_id');
+            $table->foreign('big_question_id')->references('id')->on('big_questions'); # 外部キー制約をつける
+            $table->string('local_name');
             $table->string('image');
+            $table->timestamps();
 
         });
     }

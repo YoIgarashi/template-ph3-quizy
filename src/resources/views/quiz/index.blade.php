@@ -10,63 +10,22 @@
 </head>
 
 <body>
+  @section('content')
   <div class="wrapper" id="wrapper">
-    <h1 class="content">ガチで
-      {{$name}}
-      の人しか解けない！ #東京の難読地名クイズ</h1>
-
+    @foreach($name as $n)
+    <h1 class="content">ガチで{{$n->prefecture_name}} の人しか解けない！ #{{$n->prefecture_name}} の難読地名クイズ</h1>
+    @endforeach
     <div class="content">
       <!-- 問題 -->
-      <h2 class="h2">この地名は何て読む？：たかなわ</h2>
+      <h2 class="h2">この地名は何て読む？：</h2>
       <ul class="list-of-choices">
+        @foreach($choices as $choice)
+        {{$loop->iteration}}
         <li class="choice">
-          たかなわ
-        </li>
-        <li class="choice">
-          たかわ
-        </li>
-        <li class="choice">
-          こうわ
+        {{$choice->name}}
         </li>
       </ul>
-      <h2 class="h2">この地名は何て読む？：亀戸</h2>
-      <ul class="list-of-choices">
-        <li class="choice">
-          カメイド
-        </li>
-        <li class="choice">
-          かめと
-        </li>
-        <li class="choice">
-          かめど
-        </li>
-      </ul>
-      <h2 class="h2">この地名は何て読む？：御徒町</h2>
-      <ul class="list-of-choices">
-        <li class="choice">
-          かゆまち
-        </li>
-        <li class="choice">
-        かまち
-        </li>
-        <li class="choice">
-          おかちまち
-        </li>
-      </ul>
-      <h2 class="h2">この地名は何て読む？：向平</h2>
-      <ul class="list-of-choices">
-        <li class="choice">
-          むかいひら
-        </li>
-        <li class="choice">
-          むかひら
-        </li>
-        <li class="choice">
-          ぱっきゃお
-        </li>
-      </ul>
-
-      
+      @endforeach
 
     </div>
 

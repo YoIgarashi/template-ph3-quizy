@@ -21,6 +21,8 @@ Route::get('/quiz/{id?}','App\Http\Controllers\QuizController@quiz');
 
 
 
+
+
 // Route::get('', 'コントローラー名@アクション名');
 
 // Route::get('/user', 'UserController@index');
