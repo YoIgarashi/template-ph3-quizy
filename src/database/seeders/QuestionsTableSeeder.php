@@ -22,11 +22,11 @@ class QuestionsTableSeeder extends Seeder
             'image' => 'aaaa.jp',
         ],[
             'local_name' =>'亀戸',
-            'big_question_id' => '2',
+            'big_question_id' => '1',
             'image' => 'bbb.jp',
         ],[
             'local_name' =>'向平',
-            'big_question_id' => '1',
+            'big_question_id' => '2',
             'image' => 'ccc.jp',
         ]];
         FacadesDB::table('questions')->insert($question);
