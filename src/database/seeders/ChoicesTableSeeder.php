@@ -48,17 +48,17 @@ class ChoicesTableSeeder extends Seeder
         ],[
             'name' => 'ぬかいひら',
             'valid' => '2',
-            'question_id' => '2',
+            'question_id' => '3',
             
         ],[
             'name' => 'むこうひら',
             'valid' => '1',
-            'question_id' => '2',
+            'question_id' => '3',
             
         ],[
             'name' => 'むかひら',
             'valid' => '2',
-            'question_id' => '2',
+            'question_id' => '3',
             
         ],
     

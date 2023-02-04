@@ -19,15 +19,15 @@ class QuestionsTableSeeder extends Seeder
         $question = [[
             'local_name' =>'高輪',
             'big_question_id' => '1',
-            'image' => 'aaaa.jp',
+            'image' => 'takanawa',
         ],[
             'local_name' =>'亀戸',
             'big_question_id' => '1',
-            'image' => 'bbb.jp',
+            'image' => 'kameido',
         ],[
-            'local_name' =>'向平',
+            'local_name' =>'向洋',
             'big_question_id' => '2',
-            'image' => 'ccc.jp',
+            'image' => 'mukainada',
         ]];
         FacadesDB::table('questions')->insert($question);
     }
