@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\QuestionController;
 
 
 /*
@@ -31,6 +32,12 @@ Route::get('/edit/{id?}', [AdminController::class, 'edit'])->name('admin.edit');
 Route::post('/update/{id?}', [AdminController::class, 'update'])->name('admin.update');
 
 Route::post('/admin/destroy/{id?}', [AdminController::class, 'destroy'])->name('admin.destroy');
+
+Route::get('/admin/question/create', [QuestionController::class, 'create'])->name('question.create');
+
+
+Route::get('/admin/question/{id?}', [QuestionController::class, 'index'])->name('question.index');
+
 
 
 

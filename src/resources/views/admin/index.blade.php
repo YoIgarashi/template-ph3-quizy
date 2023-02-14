@@ -14,10 +14,12 @@
         @csrf
         <button type="submit">削除</button>
       </form>
-
     </td>
     <td>
-    <a href="{{route('admin.edit',['id'=>$big_question->id])}}">{{ __('編集') }}</a>
+      <a href="{{route('admin.edit',['id'=>$big_question->id])}}">{{ __('編集') }}</a>
+    </td>
+    <td>
+      <a href="{{route('question.index',['id'=>$big_question->id])}}">詳細</a>
     </td>
   </tr>
   @endforeach

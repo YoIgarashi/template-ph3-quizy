@@ -4,19 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BigQuestion;
+use App\Models\Question;
 
-class AdminController extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $big_questions = BigQuestion::get();
-        return view('admin.index', compact('big_questions'));
-        
+    $questions = Question::where('big_question_id', $id)->get();
+    return view('admin.question.index', compact('questions'));
     }
 
     /**
@@ -26,7 +26,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        return view('admin.question.index');
     }
 
     /**
@@ -35,15 +35,10 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-
     public function store(Request $request)
     {
-        $big_questions = new BigQuestion;
-        $big_questions->prefecture_name = $request->input('prefecture_name');
-        $big_questions->save();
-        return redirect('admin');
-        }
+        //
+    }
 
     /**
      * Display the specified resource.
@@ -53,7 +48,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -64,8 +59,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $big_question=BigQuestion::find($id);
-        return view('admin/edit', compact('big_question'));
+        //
     }
 
     /**
@@ -77,15 +71,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $big_question=BigQuestion::find($id);
-
-        $big_question->prefecture_name=$request->prefecture_name;
-    
-        //DBに保存
-        $big_question->save();
-    
-        //処理が終わったらmember/indexにリダイレクト
-        return redirect()->route('admin.index');
+        //
     }
 
     /**
@@ -96,10 +82,6 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        $big_question=BigQuestion::find($id);
-
-        $big_question->delete();
-    
-        return redirect('admin');
+        //
     }
 }
