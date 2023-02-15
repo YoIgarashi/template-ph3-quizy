@@ -33,10 +33,19 @@ Route::post('/update/{id?}', [AdminController::class, 'update'])->name('admin.up
 
 Route::post('/admin/destroy/{id?}', [AdminController::class, 'destroy'])->name('admin.destroy');
 
-Route::get('/admin/question/create', [QuestionController::class, 'create'])->name('question.create');
+Route::get('/admin/question/create/{id?}', [QuestionController::class, 'create'])->name('question.create');
 
+Route::post('/admin/question/store', [QuestionController::class, 'store'])->name('question.store');
 
 Route::get('/admin/question/{id?}', [QuestionController::class, 'index'])->name('question.index');
+
+
+
+
+
+// Route::get('/admin/question/edit', [QuestionController::class,'edit'])->name('question.edit');
+
+
 
 
 

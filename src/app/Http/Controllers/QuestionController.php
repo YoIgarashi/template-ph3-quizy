@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\BigQuestion;
 use App\Models\Question;
 
 class QuestionController extends Controller
@@ -15,8 +14,8 @@ class QuestionController extends Controller
      */
     public function index($id)
     {
-    $questions = Question::where('big_question_id', $id)->get();
-    return view('admin.question.index', compact('questions'));
+        $questions = Question::where('big_question_id', $id)->get();
+        return view('admin.question.index', compact('questions','id'));
     }
 
     /**
@@ -26,7 +25,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('admin.question.index');
+        return view('admin.question.create');
     }
 
     /**
@@ -35,9 +34,14 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $questions = new Question;
+        $questions->local_name = $request->input('local_name');
+        $questions->image = $request->input('image');
+        $questions->big_question_id = $id;
+        $questions->save();
+        return redirect('admin.question', compact('questions'));
     }
 
     /**
@@ -59,7 +63,9 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $questions = Question::find('id');
+
+        // return view('admin.question.edit', compact('question'));
     }
 
     /**
