@@ -23,9 +23,10 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('admin.question.create');
+        return view('admin.question.create',compact('id'));
+
     }
 
     /**
@@ -34,14 +35,13 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store($id , Request $request)
     {
         $questions = new Question;
         $questions->local_name = $request->input('local_name');
-        $questions->image = $request->input('image');
         $questions->big_question_id = $id;
         $questions->save();
-        return redirect('admin.question', compact('questions'));
+        return redirect()->route('question.index',$id);
     }
 
     /**
@@ -61,11 +61,12 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($question_id, $id)
     {
-        // $questions = Question::find('id');
+        $questions = Question::find($question_id);
+        dd($questions);
 
-        // return view('admin.question.edit', compact('question'));
+        return view('admin.question.edit', compact('questions','id'));
     }
 
     /**
@@ -77,7 +78,10 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $questions = Question::find('id');
+        $questions->local_name = $request->input('local_name');
+        $questions->save();
+        return redirect()->route('question.index','id');
     }
 
     /**

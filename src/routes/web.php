@@ -35,7 +35,11 @@ Route::post('/admin/destroy/{id?}', [AdminController::class, 'destroy'])->name('
 
 Route::get('/admin/question/create/{id?}', [QuestionController::class, 'create'])->name('question.create');
 
-Route::post('/admin/question/store', [QuestionController::class, 'store'])->name('question.store');
+Route::post('/admin/question/store/{id?}', [QuestionController::class, 'store'])->name('question.store');
+
+Route::get('/admin/question/edit/{id?}', [QuestionController::class, 'edit'])->name('question.edit');
+
+Route::post('/admin/question/update/{id?}', [QuestionController::class, 'update'])->name('question.update');
 
 Route::get('/admin/question/{id?}', [QuestionController::class, 'index'])->name('question.index');
 
