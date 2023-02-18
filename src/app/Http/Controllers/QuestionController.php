@@ -64,7 +64,6 @@ class QuestionController extends Controller
     public function edit($question_id, $id)
     {
         $questions = Question::find($question_id);
-        dd($questions);
 
         return view('admin.question.edit', compact('questions','id'));
     }
@@ -78,10 +77,11 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $questions = Question::find('id');
+        $questions = Question::find($id);
+        // dd($questions);
         $questions->local_name = $request->input('local_name');
         $questions->save();
-        return redirect()->route('question.index','id');
+        return redirect()->route('question.index',$id);
     }
 
     /**

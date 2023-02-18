@@ -1,5 +1,3 @@
-
-
 <h1>詳細表示</h1>
 <div>
   地名
@@ -7,7 +5,7 @@
     @foreach($questions as $question)
     <li>
       {{$question->local_name}}
-      <a href="{{route('question.edit',['id' => $id, 'question_id'=>$question->id])}}">{{ __('編集') }}</a>
+      <a href="{{route('question.edit', ['id' => $id, 'question_id'=>$question->id])}}">{{ __('編集') }}</a>
     </li>
     @endforeach
   </ul>
