@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Models\BigQuestion;
 
 class QuestionController extends Controller
 {
@@ -90,8 +91,11 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,$question_id)
     {
-        //
+        
+    $questions = Question::with('choices')->find($question_id);
+        $questions->delete();
+        return redirect()->route('question.index',$id);
     }
 }

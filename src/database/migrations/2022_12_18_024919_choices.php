@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('choices', function(Blueprint $table){
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('question_id');
-            $table->foreign('question_id')->references('id')->on('questions'); 
+            $table->unsignedBigInteger('question_id')->nullable();
+            $table->foreign('question_id')->references('id')->on('questions')->cascadeOnDelete(); 
             $table->string('name');
             $table->integer('valid');
             $table->timestamps();

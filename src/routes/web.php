@@ -41,6 +41,8 @@ Route::get('/admin/question/edit/{id?}/{question_id?}', [QuestionController::cla
 
 Route::post('/admin/question/update/{id?}', [QuestionController::class, 'update'])->name('question.update');
 
+Route::post('/admin/question/destroy/{id?}/{question_id?}', [QuestionController::class, 'destroy'])->name('question.destroy');
+
 Route::get('/admin/question/{id?}', [QuestionController::class, 'index'])->name('question.index');
 
 
