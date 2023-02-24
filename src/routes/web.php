@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ChoiceController;
+
 
 
 /*
@@ -44,6 +46,13 @@ Route::post('/admin/question/update/{id?}', [QuestionController::class, 'update'
 Route::post('/admin/question/destroy/{id?}/{question_id?}', [QuestionController::class, 'destroy'])->name('question.destroy');
 
 Route::get('/admin/question/{id?}', [QuestionController::class, 'index'])->name('question.index');
+
+
+Route::get('/admin/question/choice/create/{id?}', [ChoiceController::class, 'create'])->name('choice.create');
+
+
+Route::get('/admin/question/choice/{id?}', [ChoiceController::class, 'index'])->name('choice.index');
+
 
 
 
