@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Choice;
+use App\Models\Question;
 
 class ChoiceController extends Controller
 {
@@ -25,7 +26,9 @@ class ChoiceController extends Controller
      */
     public function create($id)
     {
-        return view('choice.create',compact('id'));
+        $choices = Question::where('local_name',$id)->get();
+
+        return view('admin.question.choice.create', compact('choices','id'));
     }
 
     /**
@@ -34,9 +37,14 @@ class ChoiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
-        //
+        $choices = new Question;
+        $choices->name = $request->input('name');
+        $choices->question_id = $id;
+        $choices->save();
+        return redirect()->route('choice.index',$id);
+
     }
 
     /**

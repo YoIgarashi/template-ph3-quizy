@@ -1,7 +1,7 @@
 <a href="{{ route('question.index') }}">{{ __('戻る') }}</a>
 <h1>新規作成</h1>
 
-<form method="post" action="{{route('question.store', ['id' =>$id])}}">
+<form method="post" action="{{route('question.store', ['id' => $id])}}">
   @csrf
 
   <div>

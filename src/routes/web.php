@@ -50,6 +50,8 @@ Route::get('/admin/question/{id?}', [QuestionController::class, 'index'])->name(
 
 Route::get('/admin/question/choice/create/{id?}', [ChoiceController::class, 'create'])->name('choice.create');
 
+Route::get('/admin/question/choice/store/{id?}', [ChoiceController::class, 'store'])->name('choice.store');
+
 
 Route::get('/admin/question/choice/{id?}', [ChoiceController::class, 'index'])->name('choice.index');
 
