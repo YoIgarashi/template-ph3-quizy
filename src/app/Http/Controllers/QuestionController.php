@@ -27,7 +27,6 @@ class QuestionController extends Controller
     public function create($id)
     {
         return view('admin.question.create',compact('id'));
-
     }
 
     /**

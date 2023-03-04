@@ -15,8 +15,8 @@ class ChoiceController extends Controller
      */
     public function index($id)
     {
-        $choices = Choice::where('question_id', $id)->get();
-        return view('admin.question.choice.index', compact('choices','id'));
+        $choices = Question::with('choices')->find($id);
+        return view('admin.question.choice.index', compact('choices'));
     }
 
     /**
@@ -26,9 +26,8 @@ class ChoiceController extends Controller
      */
     public function create($id)
     {
-        $choices = Question::where('local_name',$id)->get();
-
-        return view('admin.question.choice.create', compact('choices','id'));
+        $choices = Question::all();
+        return view('admin.question.choice.create', compact('id'));
     }
 
     /**
@@ -39,12 +38,12 @@ class ChoiceController extends Controller
      */
     public function store($id, Request $request)
     {
-        $choices = new Question;
+        $choices = new Choice;
         $choices->name = $request->input('name');
-        $choices->question_id = $id;
+        $choices->valid =$request->input('valid');
+        $choices->question_id= $id;
         $choices->save();
-        return redirect()->route('choice.index',$id);
-
+        return redirect()->route('choice.index', compact('id','choices'));
     }
 
     /**
@@ -64,9 +63,10 @@ class ChoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($choice_id)
     {
-        //
+        $choices = Choice::find($choice_id);
+        return view('admin.question.choice.edit', compact('choices'));
     }
 
     /**
@@ -76,9 +76,14 @@ class ChoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $choice_id)
     {
-        //
+        $choices = Choice::find($choice_id);
+        $choices->name = $request->input('name');
+        $choices->valid = $request->input('valid');
+        $choices->save();
+        $id = $choices->question_id;
+        return redirect()->route('choice.index', compact('id'));
     }
 
     /**
@@ -87,8 +92,12 @@ class ChoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($choice_id)
     {
-        //
+        
+        $choices = Choice::find($choice_id);
+        $choices->delete();
+        $id = $choices->question_id;
+        return redirect()->route('choice.index',compact('id'));
     }
 }

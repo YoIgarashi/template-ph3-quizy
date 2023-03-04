@@ -48,12 +48,18 @@ Route::post('/admin/question/destroy/{id?}/{question_id?}', [QuestionController:
 Route::get('/admin/question/{id?}', [QuestionController::class, 'index'])->name('question.index');
 
 
-Route::get('/admin/question/choice/create/{id?}', [ChoiceController::class, 'create'])->name('choice.create');
+Route::get('/admin/question/choice/create/{choice_id}', [ChoiceController::class, 'create'])->name('choice.create');
 
-Route::get('/admin/question/choice/store/{id?}', [ChoiceController::class, 'store'])->name('choice.store');
+Route::post('/admin/question/choice/store/{id}', [ChoiceController::class, 'store'])->name('choice.store');
+
+Route::get('/admin/question/choice/edit/{choice_id}', [ChoiceController::class, 'edit'])->name('choice.edit');
 
 
-Route::get('/admin/question/choice/{id?}', [ChoiceController::class, 'index'])->name('choice.index');
+Route::post('/admin/question/choice/update/{choice_id}', [ChoiceController::class, 'update'])->name('choice.update');
+
+Route::post('/admin/question/choice/destroy/{choice_id}', [ChoiceController::class, 'destroy'])->name('choice.destroy');
+
+Route::get('/admin/question/choice/{id}', [ChoiceController::class, 'index'])->name('choice.index');
 
 
 
