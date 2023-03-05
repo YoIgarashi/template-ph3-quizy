@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Question;
-use App\Models\BigQuestion;
+use Illuminate\Support\Facades\Storage;
 
 class QuestionController extends Controller
 {
@@ -16,7 +16,7 @@ class QuestionController extends Controller
     public function index($id)
     {
         $questions = Question::where('big_question_id', $id)->get();
-        return view('admin.question.index', compact('questions','id'));
+        return view('admin.question.index', compact('questions', 'id'));
     }
 
     /**
@@ -24,9 +24,9 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create(Request $request, $id)
     {
-        return view('admin.question.create',compact('id'));
+        return view('admin.question.create', compact('id'));
     }
 
     /**
@@ -35,13 +35,21 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id , Request $request)
+    public function store($id, Request $request)
     {
         $questions = new Question;
         $questions->local_name = $request->input('local_name');
         $questions->big_question_id = $id;
+        if ($request->file('file')) {
+
+            $image = $request->file('file')->getClientOriginalName();
+            $request->file('file')->storeAs('public', $image);
+            $questions->image = $image;
+        } else {
+            $image = null;
+        }
         $questions->save();
-        return redirect()->route('question.index',$id);
+        return redirect()->route('question.index', $id);
     }
 
     /**
@@ -65,7 +73,7 @@ class QuestionController extends Controller
     {
         $questions = Question::find($question_id);
 
-        return view('admin.question.edit', compact('questions','id'));
+        return view('admin.question.edit', compact('questions', 'id'));
     }
 
     /**
@@ -81,7 +89,7 @@ class QuestionController extends Controller
         // dd($questions);
         $questions->local_name = $request->input('local_name');
         $questions->save();
-        return redirect()->route('question.index',$id);
+        return redirect()->route('question.index', $id);
     }
 
     /**
@@ -90,11 +98,11 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id,$question_id)
+    public function destroy($id, $question_id)
     {
-        
-    $questions = Question::with('choices')->find($question_id);
+
+        $questions = Question::with('choices')->find($question_id);
         $questions->delete();
-        return redirect()->route('question.index',$id);
+        return redirect()->route('question.index', $id);
     }
 }

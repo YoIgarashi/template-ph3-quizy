@@ -8,7 +8,6 @@
   <input type="text" name=local_name value="{{$questions->local_name}}">
   </div>
 
-
   <input type="submit" value="更新する">
 
   </form>
