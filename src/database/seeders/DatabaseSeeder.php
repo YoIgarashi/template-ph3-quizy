@@ -14,15 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-        $this ->call(Big_QuestionsTableSeeder::class);
-        $this ->call(QuestionsTableSeeder::class);
-        $this ->call(ChoicesTableSeeder::class);
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call([
+            ContentSeeder::class,
+            LanguageSeeder::class,
+            ContentsConclusionSeeder::class,
+            LearnedLanguageSeeder::class,
+            RecordSeeder::class,
+        ]);
     }
 }
